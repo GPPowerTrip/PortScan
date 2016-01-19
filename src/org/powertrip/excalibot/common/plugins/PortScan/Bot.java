@@ -37,7 +37,7 @@ public class Bot extends KnightPlug{
                 socket.setTrafficClass(0x04 | 0x10);
                 socket.connect(new InetSocketAddress(address, i));
                 socket.send(new DatagramPacket(data, data.length));
-                System.out.println(data.length+" "+address+" "+i);
+                System.out.println("Testing: "+address+" Port: "+i);
                 while (true) {
                     byte[] receive = new byte[4096];
                     DatagramPacket response = new DatagramPacket(receive, 4096);
@@ -47,7 +47,7 @@ public class Bot extends KnightPlug{
                         openPorts.concat(Integer.toString(i) + " ");
                         break;
                     }
-                    System.out.println(openPorts);
+                    System.out.println("Open Ports: "+openPorts);
                 }
             } catch (Exception e) {
                 System.err.println("Problem on connection.");//e.printStackTrace();
@@ -72,7 +72,7 @@ public class Bot extends KnightPlug{
                         .setResponse("Ports", openPorts);
             else
                 result
-                        .setSuccessful(false)
+                        .setSuccessful(true)
                         .setResponse("Ports", "All ports closed");
 			resultManager.returnResult(result);
 			return result.isSuccessful();
